@@ -114,6 +114,11 @@ class WaveFunction {
         }
     }
 
+    // 获取当前纠缠度
+    getEntanglement() {
+        return this.entanglement;
+    }
+
     // 获取当前最可能的状态
     getMostProbableState() {
         let maxProb = 0;
@@ -130,8 +135,7 @@ class WaveFunction {
 
         return {
             state: mostProbableState,
-            probability: maxProb,
-            entanglement: this.entanglement
+            probability: maxProb
         };
     }
 

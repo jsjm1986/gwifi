@@ -169,7 +169,7 @@ class Wife {
             waveState: waveState.state,
             waveProbability: waveState.probability,
             probabilities: probabilities,
-            entanglement: waveState.entanglement,
+            entanglement: this.waveFunction.getEntanglement(),
             measurementsToday: this.measurementsToday,
             systemStability: this.systemStability
         };

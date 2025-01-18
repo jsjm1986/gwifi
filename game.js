@@ -36,8 +36,15 @@ class Game {
         this.updateQuantumStates(status.probabilities);
         
         // 更新纠缠度
-        document.getElementById('entanglementBar').style.width = `${status.entanglement * 100}%`;
-        document.getElementById('entanglementBar').className = `progress ${status.entanglement > 0.5 ? 'risk' : 'measured'}`;
+        const entanglementBar = document.getElementById('entanglementBar');
+        entanglementBar.style.width = `${Math.round(status.entanglement * 100)}%`;
+        entanglementBar.className = `progress ${status.entanglement > 0.5 ? 'risk' : 'measured'}`;
+        
+        // 添加纠缠度数值显示
+        const entanglementValue = entanglementBar.parentElement.previousElementSibling;
+        if (entanglementValue) {
+            entanglementValue.textContent = `纠缠度: ${Math.round(status.entanglement * 100)}%`;
+        }
 
         // 更新日期显示
         document.getElementById('dateDisplay').textContent = this.eventSystem.getDateString();
