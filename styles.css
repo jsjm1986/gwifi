@@ -508,12 +508,19 @@ body {
 .daily-choice-message {
     text-align: center;
     padding: 1.5rem;
-    background: #f8f9fa;
-    border-radius: 8px;
-    color: #7f8c8d;
-    font-style: italic;
-    border: 1px dashed #bdc3c7;
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.95),
+        rgba(230, 230, 255, 0.95)
+    );
+    border-radius: 15px;
+    color: var(--quantum-text);
+    font-size: 1.1rem;
+    border: 1px solid rgba(109, 60, 255, 0.2);
     margin: 1rem 0;
+    box-shadow: 
+        0 5px 15px rgba(109, 60, 255, 0.05),
+        inset 0 0 20px rgba(0, 184, 212, 0.05);
+    animation: fadeIn 0.5s ease;
 }
 
 .control-button:disabled {
@@ -529,16 +536,24 @@ body {
 
 .option-button.disabled,
 .option-button:disabled {
-    background: #bdc3c7;
+    background: linear-gradient(135deg, 
+        rgba(189, 195, 199, 0.9),
+        rgba(189, 195, 199, 0.7)
+    );
     cursor: not-allowed;
     transform: none;
     opacity: 0.7;
+    box-shadow: none;
 }
 
 .option-button.disabled:hover,
 .option-button:disabled:hover {
-    background: #bdc3c7;
     transform: none;
+    box-shadow: none;
+    background: linear-gradient(135deg, 
+        rgba(189, 195, 199, 0.9),
+        rgba(189, 195, 199, 0.7)
+    );
 }
 
 .measurement-notification {

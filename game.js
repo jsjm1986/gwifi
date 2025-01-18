@@ -148,11 +148,30 @@ class Game {
     }
 
     generateOptions() {
+        if (this.dailyChoiceMade) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'daily-choice-message';
+            messageDiv.textContent = '今天的选择已经做出。请点击"下一天"继续游戏。';
+            document.getElementById('options').innerHTML = '';
+            document.getElementById('options').appendChild(messageDiv);
+            return;
+        }
+
         const optionsContainer = document.getElementById('options');
         const eventPanel = document.getElementById('eventPanel');
         optionsContainer.innerHTML = '';
 
         if (this.wife.isCollapsed) {
+            return;
+        }
+
+        // 如果今天已经做出选择，显示等待信息
+        if (this.dailyChoiceMade) {
+            optionsContainer.innerHTML = `
+                <div class="daily-choice-message">
+                    今天的选择已经做出，请点击"进入下一天"继续游戏
+                </div>
+            `;
             return;
         }
 
@@ -191,6 +210,11 @@ class Game {
             }
 
             button.onclick = () => {
+                // 防止重复点击
+                if (this.dailyChoiceMade) {
+                    return;
+                }
+
                 if (event.isMeasurement) {
                     try {
                         const measurement = this.wife.measureAttribute(event.measureAttribute);
@@ -206,9 +230,24 @@ class Game {
                     this.wife.updateStatus(outcome.effect, outcome.waveAction);
                 }
                 
+                // 设置今天已做出选择
                 this.dailyChoiceMade = true;
+                
+                // 禁用所有选项按钮
+                const allButtons = optionsContainer.querySelectorAll('.option-button');
+                allButtons.forEach(btn => {
+                    btn.disabled = true;
+                    btn.classList.add('disabled');
+                });
+                
                 this.updateUI();
-                this.generateOptions();
+                
+                // 显示提示信息
+                optionsContainer.insertAdjacentHTML('afterbegin', `
+                    <div class="daily-choice-message">
+                        今天的选择已经做出，请点击"进入下一天"继续游戏
+                    </div>
+                `);
             };
 
             optionsContainer.appendChild(button);
