@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>薛定谔的老婆</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="quantum-intro.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="quantum-particles">
+            <!-- 量子粒子将通过JS动态生成 -->
+        </div>
+        <div class="header">
+            <h1>薛定谔的老婆</h1>
+            <div class="system-info">
+                <div id="dateDisplay" class="date-display">第1月 第1天</div>
+                <div class="system-stability">
+                    系统稳定性: <span id="stabilityValue">100%</span>
+                    <div class="progress-bar">
+                        <div id="stabilityBar" class="progress"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="status-panel">
+            <div class="quantum-attributes">
+                <div class="status-item">
+                    <div class="attribute-header">
+                        <label>爱情值:</label>
+                        <span class="measurement-info" id="loveMeasurement"></span>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div id="loveBar" class="progress"></div>
+                        </div>
+                        <div class="uncertainty-indicator" id="loveUncertainty"></div>
+                    </div>
+                    <div class="attribute-details">
+                        <span class="risk-indicator" id="loveRisk"></span>
+                        <span class="stability-indicator" id="loveStability"></span>
+                    </div>
+                </div>
+
+                <div class="status-item">
+                    <div class="attribute-header">
+                        <label>心情值:</label>
+                        <span class="measurement-info" id="moodMeasurement"></span>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div id="moodBar" class="progress"></div>
+                        </div>
+                        <div class="uncertainty-indicator" id="moodUncertainty"></div>
+                    </div>
+                    <div class="attribute-details">
+                        <span class="risk-indicator" id="moodRisk"></span>
+                        <span class="stability-indicator" id="moodStability"></span>
+                    </div>
+                </div>
+
+                <div class="status-item">
+                    <div class="attribute-header">
+                        <label>信任值:</label>
+                        <span class="measurement-info" id="trustMeasurement"></span>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div id="trustBar" class="progress"></div>
+                        </div>
+                        <div class="uncertainty-indicator" id="trustUncertainty"></div>
+                    </div>
+                    <div class="attribute-details">
+                        <span class="risk-indicator" id="trustRisk"></span>
+                        <span class="stability-indicator" id="trustStability"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quantum-state">
+                <div class="state-header">量子态分布</div>
+                <div class="state-container" id="quantumStates">
+                    <!-- 量子态将通过JS动态生成 -->
+                </div>
+                <div class="entanglement-info">
+                    <label>纠缠度:</label>
+                    <div class="progress-bar">
+                        <div id="entanglementBar" class="progress"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="wife-display">
+            <div id="wifeStatus" class="wife-status">状态: 未坍缩</div>
+            <div id="wifeImage" class="wife-image">👰</div>
+        </div>
+
+        <div id="eventPanel" class="event-panel">
+            <div id="eventTitle" class="event-title"></div>
+            <div id="eventDescription" class="event-description"></div>
+        </div>
+
+        <div id="options" class="options-container">
+            <!-- 选项将通过JS动态生成 -->
+        </div>
+
+        <div id="gameMessage" class="game-message"></div>
+
+        <div class="control-panel">
+            <button id="nextDay" class="control-button">进入下一天</button>
+            <button id="showAchievements" class="control-button">查看成就</button>
+        </div>
+
+        <div id="achievementsPanel" class="achievements-panel hidden">
+            <div class="achievements-header">
+                <h2>成就列表</h2>
+                <button class="close-button" onclick="document.getElementById('achievementsPanel').classList.add('hidden')">×</button>
+            </div>
+            <div id="achievementsList" class="achievements-list">
+                <!-- 成就列表将通过JS动态生成 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 按依赖顺序引入脚本 -->
+    <script src="QuantumAttribute.js"></script>
+    <script src="WaveFunction.js"></script>
+    <script src="events.js"></script>
+    <script src="achievements.js"></script>
+    <script src="wife.js"></script>
+    <script src="game.js"></script>
+    <script src="quantum-intro.js"></script>
+    <script>
+        // 生成量子粒子
+        function createQuantumParticles() {
+            const container = document.querySelector('.quantum-particles');
+            const particleCount = 20;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'quantum-particle';
+                
+                // 随机位置
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                
+                // 随机移动方向
+                particle.style.setProperty('--move-x', (Math.random() * 200 - 100) + 'px');
+                particle.style.setProperty('--move-y', (Math.random() * 200 - 100) + 'px');
+                
+                container.appendChild(particle);
+                
+                // 动画结束后重新生成粒子
+                particle.addEventListener('animationend', () => {
+                    particle.remove();
+                    createParticle();
+                });
+            }
+        }
+
+        function createParticle() {
+            const container = document.querySelector('.quantum-particles');
+            const particle = document.createElement('div');
+            particle.className = 'quantum-particle';
+            
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.setProperty('--move-x', (Math.random() * 200 - 100) + 'px');
+            particle.style.setProperty('--move-y', (Math.random() * 200 - 100) + 'px');
+            
+            container.appendChild(particle);
+            
+            particle.addEventListener('animationend', () => {
+                particle.remove();
+                createParticle();
+            });
+        }
+
+        // 添加按钮波纹效果
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('.option-button, .control-button')) {
+                const button = e.target;
+                const ripple = document.createElement('div');
+                ripple.className = 'ripple';
+                
+                const rect = button.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                ripple.style.width = ripple.style.height = size + 'px';
+                
+                const x = e.clientX - rect.left - size/2;
+                const y = e.clientY - rect.top - size/2;
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                
+                button.appendChild(ripple);
+                ripple.addEventListener('animationend', () => ripple.remove());
+            }
+        });
+
+        // 初始化量子粒子
+        createQuantumParticles();
+
+        // 初始化介绍弹窗
+        window.addEventListener('load', () => {
+            new QuantumIntro();
+        });
+    </script>
+</body>
+</html> 

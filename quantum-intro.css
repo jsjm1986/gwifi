@@ -1,0 +1,270 @@
+.quantum-intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(26, 35, 126, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.quantum-intro-overlay.active {
+    opacity: 1;
+}
+
+.quantum-intro-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 800px;
+    width: 90%;
+    max-height: 80vh;
+    position: relative;
+    transform: translateY(30px);
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 10px 30px rgba(109, 60, 255, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.quantum-intro-overlay.active .quantum-intro-container {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.quantum-intro-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--quantum-border);
+    position: relative;
+    flex-shrink: 0;
+}
+
+.quantum-intro-header h2 {
+    margin: 0;
+    background: var(--quantum-gradient-1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-size: 2rem;
+}
+
+.quantum-intro-content {
+    display: grid;
+    gap: 2rem;
+    overflow-y: auto;
+    padding-right: 1rem;
+    margin-right: -1rem;
+    /* 自定义滚动条样式 */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(109, 60, 255, 0.3) transparent;
+}
+
+/* Webkit浏览器的滚动条样式 */
+.quantum-intro-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.quantum-intro-content::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 4px;
+}
+
+.quantum-intro-content::-webkit-scrollbar-thumb {
+    background-color: rgba(109, 60, 255, 0.3);
+    border-radius: 4px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+.quantum-intro-content::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(109, 60, 255, 0.5);
+}
+
+.quantum-concept {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 1.5rem;
+    border-radius: 15px;
+    border: 1px solid rgba(109, 60, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.concept-formula {
+    font-family: "Times New Roman", serif;
+    font-size: 1.4rem;
+    text-align: center;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    background: rgba(26, 35, 126, 0.05);
+    border-radius: 10px;
+    color: #1a237e;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    box-shadow: inset 0 0 10px rgba(26, 35, 126, 0.1);
+    transition: all 0.3s ease;
+}
+
+.concept-formula:hover {
+    background: rgba(26, 35, 126, 0.08);
+    transform: scale(1.02);
+    box-shadow: 
+        inset 0 0 15px rgba(26, 35, 126, 0.15),
+        0 2px 5px rgba(26, 35, 126, 0.1);
+}
+
+.quantum-concept:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 5px 15px rgba(109, 60, 255, 0.1),
+        0 0 0 1px rgba(109, 60, 255, 0.2);
+}
+
+.concept-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--quantum-text);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.concept-icon {
+    font-size: 1.5rem;
+}
+
+.concept-description {
+    color: #666;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.quantum-intro-footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 2px solid var(--quantum-border);
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.95);
+    position: relative;
+    z-index: 1;
+}
+
+.start-game-btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 10px;
+    background: var(--quantum-gradient-1);
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.start-game-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(109, 60, 255, 0.2);
+}
+
+.start-game-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+}
+
+.start-game-btn:hover::before {
+    transform: translateX(100%);
+}
+
+.quantum-particles-intro {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.quantum-particle-intro {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--quantum-primary);
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: particleFloatIntro 8s infinite linear;
+}
+
+@keyframes particleFloatIntro {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.3;
+    }
+    80% {
+        opacity: 0.3;
+    }
+    100% {
+        transform: translate(var(--move-x, 100px), var(--move-y, -100px)) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.quantum-concept.game-intro {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(230, 230, 255, 0.95));
+    border-left: 4px solid #6d3cff;
+}
+
+.quantum-concept.game-tips {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 230, 230, 0.95));
+    border-left: 4px solid #ff3c6d;
+}
+
+.concept-description ul {
+    margin: 0.5rem 0;
+    padding-left: 1.5rem;
+}
+
+.concept-description li {
+    margin: 0.5rem 0;
+    line-height: 1.4;
+    position: relative;
+}
+
+.concept-description li::before {
+    content: '•';
+    color: #6d3cff;
+    font-weight: bold;
+    position: absolute;
+    left: -1rem;
+}
+
+.game-tips .concept-description li::before {
+    color: #ff3c6d;
+} 
