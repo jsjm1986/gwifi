@@ -64,14 +64,18 @@ class Wife {
     // 更新状态（通过外部干涉）
     updateStatus(effect, waveAction) {
         // 更新波函数状态
-        this.waveFunction.updateState(waveAction);
+        if (waveAction && waveAction.type) {
+            this.waveFunction.updateState(waveAction);
+        }
         
         // 通过效果影响属性的概率分布
-        for (let attr in effect) {
-            if (this.attributes[attr]) {
-                // 效果受系统稳定性影响
-                const effectiveChange = effect[attr] * this.systemStability;
-                this.attributes[attr].applyEffect(effectiveChange);
+        if (effect) {
+            for (let attr in effect) {
+                if (this.attributes[attr]) {
+                    // 效果受系统稳定性影响
+                    const effectiveChange = effect[attr] * this.systemStability;
+                    this.attributes[attr].applyEffect(effectiveChange);
+                }
             }
         }
 

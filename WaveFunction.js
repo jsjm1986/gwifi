@@ -36,6 +36,8 @@ class WaveFunction {
 
     // 更新量子态（通过外部干涉）
     updateState(action) {
+        if (!action || !action.type) return;
+
         const interference = this.calculateInterference(action);
         const intensity = action.intensity || 1;
         

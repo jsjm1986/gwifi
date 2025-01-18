@@ -65,14 +65,7 @@ class Game {
             const stateEmoji = this.getStateEmoji(status.waveState);
             const probability = Math.round(status.waveProbability * 100);
             wifeStatus.textContent = `状态: ${stateEmoji} ${this.getStateText(status.waveState)} (${probability}%)`;
-            this.updateWifeEmoji(status);
-            
-            // 更新下一天按钮状态
-            const nextDayButton = document.getElementById('nextDay');
-            nextDayButton.disabled = !this.dailyChoiceMade;
-            nextDayButton.title = this.dailyChoiceMade ? 
-                '进入下一天' : 
-                '请先做出今天的选择';
+            wifeImage.textContent = stateEmoji;
         }
 
         // 检查成就
